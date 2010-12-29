@@ -16,16 +16,27 @@ Some simple examples of what pyCorreios code looks like:
     # -*- coding: utf-8 -*-
     from pycorreios import Correios
 
-    test = Correios().frete(Correios().SEDEX,'44001535','03971010',10,18,8)
-    if test['Erro'] != '0':
+    frete = Correios().frete(Correios().SEDEX,'44001535','03971010',10,18,8)
+    if frete['Erro'] != '0':
         print 'Deu erro! :('
-        print test['Erro']
-        print test['MsgErro']
+        print frete['Erro']
+        print frete['MsgErro']
     else:
-        print "Valor: R$%s\nPrazo de Entrega: %s" % (test['Valor'],test['PrazoEntrega'])
+        print "Valor: R$%s\nPrazo de Entrega: %s" % (frete['Valor'],frete['PrazoEntrega'])
 
     print
 
-    other_test = Correios().cep('03971010')
-    for tag_name in other_test.keys():
-        print tag_name + ': ' + other_test[tag_name]
+    cep = Correios().cep('03971010')
+    for tag_name in cep.keys():
+        print tag_name + ': ' + cep[tag_name]
+
+    encomenda = Correios().encomendas('SW238151411BR')
+    for status in encomenda:
+        print 'Data: ' + status.data
+        print 'Local: ' + status.local
+        print 'Status: ' + status.status
+        try:
+            print 'Descricao: ' + status.descricao
+        except:
+            pass
+        print '----------------------'
