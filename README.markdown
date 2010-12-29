@@ -30,7 +30,7 @@ Some simple examples of what pyCorreios code looks like:
     for tag_name in cep.keys():
         print tag_name + ': ' + cep[tag_name]
 
-    encomenda = Correios().encomendas('SW238151411BR')
+    encomenda = Correios().encomenda('SW238151411BR')
     for status in encomenda:
         print 'Data: ' + status.data
         print 'Local: ' + status.local
